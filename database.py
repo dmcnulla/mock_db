@@ -11,15 +11,15 @@ class DataBase (object):
 
     def delete(self, user_name):
         """Remove user."""
-        # print("Delete %s" % user_name)
+        print("Delete %s" % user_name)
         self.check_name(user_name)
         return self.users.remove(user_name)
 
     def add(self, user_name):
         """Add user."""
-        # print("Add %s" % user_name)
+        print("Add %s" % user_name)
         self.check_name(user_name)
-        self.users.append(user_name)
+        return self.users.append(user_name)
 
     def check_name(self, name):
         """Validate name."""

@@ -12,14 +12,14 @@ class DbAccess(object):
     def add_user(self, user):
         """Add User."""
         try:
-            self.db_con.add(user)
+            return self.db_con.add(user)
         except ValueError:
             print("Oh crap, couldn't add %s" % user)
 
     def drop_user(self, user):
         """Drop user."""
         try:
-            self.db_con.delete(user)
+            return self.db_con.delete(user)
         except ValueError:
             print("Oh crap, couldn't delete %s" % user)
 
