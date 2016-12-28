@@ -8,21 +8,21 @@ from database import DataBase
 @pytest.fixture(scope='function')
 def db_conn_fixture(request):
     """Create db connection."""
-    print("\nusing db_conn_fixture")
+    print("\n[setup] Using db_conn_fixture")
     my_conn = DbAccess('my_db')
     my_conn.add_user('dave')
     my_conn.add_user('scott')
     my_conn.add_user('pat')
     def fin():
         my_conn = None
-        # print("All done, db_conn is closed.")
+        print("\n[teardown] db_conn is closed.")
     request.addfinalizer(fin)
     return my_conn
 
 @pytest.fixture(scope='function')
 def fake_db_conn_fixture():
     """Create db connection."""
-    print("\nusing fake_db_conn_fixture")
+    print("\n[setup] Using fake_db_conn_fixture")
     my_conn = DbAccess('my_db')
     my_conn.add_user('dave')
     my_conn.add_user('scott')
