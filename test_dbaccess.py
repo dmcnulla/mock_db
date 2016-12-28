@@ -5,7 +5,7 @@ import pytest
 from dbaccess import DbAccess
 from database import DataBase
 
-@pytest.fixture()
+@pytest.fixture(scope='function')
 def db_conn_fixture(request):
     """Create db connection."""
     print("\nusing db_conn_fixture")
@@ -19,7 +19,7 @@ def db_conn_fixture(request):
     request.addfinalizer(fin)
     return my_conn
 
-@pytest.fixture()
+@pytest.fixture(scope='function')
 def fake_db_conn_fixture():
     """Create db connection."""
     print("\nusing fake_db_conn_fixture")
