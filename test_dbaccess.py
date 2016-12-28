@@ -30,7 +30,7 @@ def fake_db_conn_fixture():
     return my_conn
 
 @pytest.mark.userfixtures("db_conn_fixture")
-def test_drop_user2(db_conn_fixture):
+def test_drop_user(db_conn_fixture):
     """Test without mocks."""
     db_conn_fixture.list_users()
     db_conn_fixture.drop_user('dave')
@@ -38,6 +38,20 @@ def test_drop_user2(db_conn_fixture):
     assert(list.__contains__('dave')==False)
 
 @pytest.mark.userfixtures("fake_db_conn_fixture")
-def test_drop_user(fake_db_conn_fixture):
+def test_drop_user2(fake_db_conn_fixture):
     """Stub this."""
-    assert(True)
+    print("userfixtures and parameter")
+    assert(fake_db_conn_fixture.list_users().__contains__('dave'))
+
+def test_drop_user3(fake_db_conn_fixture):
+    """Stub this."""
+    print("parameter only")
+    assert(fake_db_conn_fixture.list_users().__contains__('dave'))
+
+@pytest.mark.userfixtures("fake_db_conn_fixture")
+def test_drop_user4():
+    """Stub this."""
+    print("userfixtures only")
+    with pytest.raises(AttributeError) as excinfo:
+        fake_db_conn_fixture.list_users()
+    excinfo.match("'function' object has no attribute 'list_users'")
