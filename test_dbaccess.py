@@ -140,3 +140,15 @@ def test_drop_user_10(db_delete_pass):
     print("test" + str(10))
     db_conn = DbAccess('fake_db')
     assert(db_conn.drop_user('fake'))
+
+# @pytest.fixture(scope='function')
+# def db_delete_param(monkeypatch, my_var):
+#     """Create db connection."""
+#     monkeypatch.setattr('database.DataBase.delete', my_var)
+
+# @pytest.mark.userfixtures("db_delete_param", True)
+# def test_drop_user_11(db_delete_param):
+#     """Stub this."""
+#     print("test" + str(11))
+#     db_conn = DbAccess('fake_db')
+#     assert(db_conn.drop_user('fake'))
